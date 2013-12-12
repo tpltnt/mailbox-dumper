@@ -1,4 +1,4 @@
 mailbox-dumper
 ==============
 
-dump your emailbox via POP3
+dump your email inbox via POP3
