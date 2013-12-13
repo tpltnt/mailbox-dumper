@@ -14,6 +14,8 @@ except socket.gaierror:
 
 account.user(getpass.getuser())
 account.pass_(getpass.getpass())
+# get basic statistics
+print("found " + str(account.stat()[1]) + " messages")
 # iterate over all messages
 msg_count = len(account.list()[1])
 for i in range(msg_count):
