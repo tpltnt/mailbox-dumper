@@ -1,4 +1,5 @@
 mailbox-dumper
 ==============
 
-dump your email inbox via POP3
+Dump your email inbox via POP3.
+Written in python 3.
