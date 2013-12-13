@@ -20,3 +20,5 @@ for i in range(msg_count):
     for j in account.retr(i+1)[1]:
         # print each message
         print(j)
+# unlock mailbox and sign off
+account.quit()
