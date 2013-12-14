@@ -11,6 +11,8 @@ This script does *not* perserve any folder structure. It just downloads
 and deletes all messages. It uses TLS (SSL) but currently does not make 
 extensive checks with regards to security.
 
+License: AGPL
+
 Dependencies
 ------------
 * [python 3](http://www.python.org)

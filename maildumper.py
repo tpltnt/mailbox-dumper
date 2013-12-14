@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+
+"""
+A simple script to dump and purge your mailbox via POP3.
+
+:author: tpltnt
+License: AGPL
+"""
 import getpass # to securely ask for the password
 import os      # to create directories
 import poplib  # to handle POP3
