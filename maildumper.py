@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import getpass, poplib, socket, sys
 
-if 2 != len(sys.argv):
-    print("usage: " + str(sys.argv[0]) + " hostname")
+if not (2 == len(sys.argv) or 3 == len(sys.argv)):
+    print("usage: " + str(sys.argv[0]) + " hostname (username)")
     sys.exit(1)
 
 # set account parameter & connect
@@ -12,7 +12,13 @@ except socket.gaierror:
     print("can not connect to '" + str(sys.argv[1]) + "' on the default SSL port")
     sys.exit(2)
 
-account.user(getpass.getuser())
+
+# send login credentials
+if 2 == len(sys.argv):
+    account.user(getpass.getuser())
+else:
+    account.user(sys.argv[2])
+
 account.pass_(getpass.getpass())
 # get basic statistics
 print("found " + str(account.stat()[0]) + " messages taking "
