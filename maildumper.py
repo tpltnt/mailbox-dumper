@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-import getpass, os, poplib, socket, sys
+import getpass # to securely ask for the password
+import os      # to create directories
+import poplib  # to handle POP3
+import socket  # to handle errors
+import sys     # to handle commandline arguments
+import time    # to get current time information
 
 if not (2 == len(sys.argv) or 3 == len(sys.argv)):
     print("usage: " + str(sys.argv[0]) + " hostname(:port) (username)")
