@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import getpass, poplib, socket, sys
+import getpass, os, poplib, socket, sys
 
 if not (2 == len(sys.argv) or 3 == len(sys.argv)):
     print("usage: " + str(sys.argv[0]) + " hostname(:port) (username)")
@@ -32,9 +32,12 @@ print("found " + str(account.stat()[0]) + " messages taking "
 msg_count = len(account.list()[1])
 # get array of UIDs and reverse it
 uids = account.uidl()[1][::-1]
+# create output directory
+os.mkdir("maildump")
 for i in range(msg_count):
     current_uid = uids.pop()
-    outfile = open(current_uid[2:],'bw')
+    outfilename = 'maildump/' + str(current_uid[2:],encoding='utf8')
+    outfile = open(outfilename, 'bw')
     for j in account.retr(i+1)[1]:
         # print each message
         print(j)
