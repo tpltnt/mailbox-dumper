@@ -7,7 +7,7 @@ if 2 != len(sys.argv):
 
 # set account parameter & connect
 try:
-    account = poplib.POP3_SSL(sys.argv[1])
+    account = poplib.POP3_SSL(sys.argv[1],port=10101)
 except socket.gaierror:
     print("can not connect to '" + str(sys.argv[1]) + "' on the default SSL port")
     sys.exit(2)
@@ -15,7 +15,8 @@ except socket.gaierror:
 account.user(getpass.getuser())
 account.pass_(getpass.getpass())
 # get basic statistics
-print("found " + str(account.stat()[1]) + " messages")
+print("found " + str(account.stat()[0]) + " messages taking "
+      + str(account.stat()[1]) + " octets of space")
 # iterate over all messages
 msg_count = len(account.list()[1])
 for i in range(msg_count):
