@@ -2,12 +2,17 @@
 import getpass, poplib, socket, sys
 
 if not (2 == len(sys.argv) or 3 == len(sys.argv)):
-    print("usage: " + str(sys.argv[0]) + " hostname (username)")
+    print("usage: " + str(sys.argv[0]) + " hostname(:port) (username)")
     sys.exit(1)
 
 # set account parameter & connect
 try:
-    account = poplib.POP3_SSL(sys.argv[1],port=10101)
+    if ':' in sys.argv[1]:
+        host = sys.argv[1].split(':')[0]
+        portnumber = sys.argv[1].split(':')[1]
+        account = poplib.POP3_SSL(host,port=portnumber)
+    else:
+        account = poplib.POP3_SSL(sys.argv[1])
 except socket.gaierror:
     print("can not connect to '" + str(sys.argv[1]) + "' on the default SSL port")
     sys.exit(2)
