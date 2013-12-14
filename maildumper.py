@@ -38,11 +38,13 @@ msg_count = len(account.list()[1])
 # get array of UIDs and reverse it
 uids = account.uidl()[1][::-1]
 # create output directory
-os.mkdir("maildump")
+datestring = time.strftime("%Y-%m-%d")
+outputdir = "maildump_" + datestring
+os.mkdir(outputdir)
 for i in range(msg_count):
     print("dumping message " + str(i+1) + " of " + str(msg_count))
     current_uid = uids.pop()
-    outfilename = 'maildump/' + str(current_uid[2:],encoding='utf8')
+    outfilename = outputdir + '/' + str(current_uid[2:],encoding='utf8')
     outfile = open(outfilename, 'bw')
     for j in account.retr(i+1)[1]:
         # write each line into the file
