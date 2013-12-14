@@ -35,15 +35,14 @@ uids = account.uidl()[1][::-1]
 # create output directory
 os.mkdir("maildump")
 for i in range(msg_count):
+    print("dumping message " + str(i+1) + " of " + str(msg_count))
     current_uid = uids.pop()
     outfilename = 'maildump/' + str(current_uid[2:],encoding='utf8')
     outfile = open(outfilename, 'bw')
     for j in account.retr(i+1)[1]:
-        # print each message
-        print(j)
+        # write each line into the file
         outfile.write(j)
         outfile.write(b'\n')
-    print("-------------------------------")
     outfile.close()
 # unlock mailbox and sign off
 account.quit()
