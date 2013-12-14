@@ -51,5 +51,7 @@ for i in range(msg_count):
         outfile.write(j)
         outfile.write(b'\n')
     outfile.close()
+    # delete the message just downloaded (on the server)
+    account.dele(i+1)
 # unlock mailbox and sign off
 account.quit()
