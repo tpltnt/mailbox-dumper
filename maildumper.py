@@ -30,9 +30,17 @@ print("found " + str(account.stat()[0]) + " messages taking "
       + str(account.stat()[1]) + " octets of space")
 # iterate over all messages
 msg_count = len(account.list()[1])
+# get array of UIDs and reverse it
+uids = account.uidl()[1][::-1]
 for i in range(msg_count):
+    current_uid = uids.pop()
+    outfile = open(current_uid[2:],'bw')
     for j in account.retr(i+1)[1]:
         # print each message
         print(j)
+        outfile.write(j)
+        outfile.write(b'\n')
+    print("-------------------------------")
+    outfile.close()
 # unlock mailbox and sign off
 account.quit()
